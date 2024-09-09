@@ -129,7 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Booking.cpp" />
     <ClCompile Include="Cinema.cpp" />
-    <ClCompile Include="KeilorM-Proyecto1.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Movie.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Sale.cpp" />
