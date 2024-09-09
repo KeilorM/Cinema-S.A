@@ -1,5 +1,7 @@
 #include "room.h"
 #include <iostream>
+#include "cinema.h"
+#include <string>
 
 Room::Room() {
 }
@@ -29,3 +31,20 @@ void Room::setSeatsNumber(int) {
 void Room::setPrice(double) {
 	this->price = price;
 }
+void createRoom(Seat roomSeat[ROWS][COLUMNS]) {
+   
+        char rowLetter = 'A';
+        int seatNumber = 1;
+
+        for (int i = 0; i < ROWS; ++i) {
+            for (int j = 0; j < COLUMNS; ++j) {
+                Seat roomSeat[i][j] = std::to_string (seatNumber) + rowLetter;
+                seatNumber ++; 
+            }
+            rowLetter = rowLetter + 1;
+            seatNumber = 1;
+        }
+    
+       
+}
+

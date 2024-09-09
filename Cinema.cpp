@@ -1,10 +1,11 @@
 #include <iostream>
 #include "cinema.h"
+#include "Room.h"
 
 Cinema::Cinema() {
 
 }
-Cinema::~Cinema() {
+Cinema::~Cinema(){
 
 }
 void Cinema::saveMovieInformation() {
@@ -20,11 +21,35 @@ void Cinema::saveMovieInformation() {
 		cinemaMovies[i].setTime(timeMovies[i]);
 		cinemaMovies[i].setCountry(countryMovies[i]);
 		cinemaMovies[i].setReview(reviewsMovies[i]);
-
+		
 	}
 }
+void Cinema::showMovieInformation() {
+	std::cout << "----------------------------------------------------- " << std::endl;
+	std::cout << "Estas son las peliculas que tenemos disponibles" << std::endl;
+	std::cout << "-----------------------------------------------------" << std::endl;
+
+	for (int i = 0; i < TOTALMOVIES; i++) {
+		if (cinemaMovies[i].getName() != "") {
+
+			std::cout << "Nombre de la pelicula: " << cinemaMovies[i].getName() << std::endl;
+			std::cout << "A"<<char(164)<<"o:" << cinemaMovies[i].getYear() << std::endl;
+			std::cout << "Duracion: " << cinemaMovies[i].getTime() << " minutos" << std::endl;
+			std::cout << "Pais: " << cinemaMovies[i].getCountry() << std::endl;
+			std::cout << "Reviews: " << cinemaMovies[i].getReview() << "/10" << std::endl;
+			std::cout << "-----------------------------" << std::endl;
+
+		}
+		
+	}
+
+}
 void Cinema::addMovie() {
-	for (int i = TOTALMOVIES - 2; i < TOTALMOVIES; i++) {
+	int numOfMovies;
+	std::cout << "Desea agregar 1 o 2 peliculas?" << std::endl;
+	std::cin >> numOfMovies;
+
+	for (int i = TOTALMOVIES - numOfMovies; i < TOTALMOVIES; i++) {
 		std::string name, country;
 		int year, time, reviews;
 		std::string opcion;
@@ -49,9 +74,10 @@ void Cinema::addMovie() {
 
 		cinemaMovies[i].setTime(time);
 
-		std::cout << "Ingrese las reviews que recivio la pelicula en un rango de 1 a 10." << std::endl;
+		std::cout << "Ingrese las reviews que recibio la pelicula en un rango de 1 a 10." << std::endl;
 		std::cin >> reviews;
 
 		cinemaMovies[i].setReview(reviews);
 	}
 }
+

@@ -1,8 +1,8 @@
 #pragma once
 #ifndef CINEMA_H
 #define CINEMA_H
-#define TOTALMOVIES 5
-#define TOTALROOMS 3
+int const TOTALMOVIES = 5;
+int const TOTALROOMS = 3;
 #include <iostream>
 #include "movie.h"
 #include "room.h"
@@ -23,8 +23,8 @@ public:
 	~Cinema();
 
 	void saveMovieInformation();
-	void showInformationMovie();
-	void saveInformationRoom();
+	void showMovieInformation();
+	void saveRoomInformation();
 	void addMovie();
 	void displayRooms();
 
