@@ -7,6 +7,7 @@ class Seat {
 private:
 	int id;
 	std::string state;
+	std::string seatId;
 public:
 	Seat();
 	Seat(int, std::string);

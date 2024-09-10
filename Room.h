@@ -2,21 +2,22 @@
 #ifndef ROOM_H
 #define ROOM_H
 #include "seat.h"
-int const ROWS = 10;
-int const COLUMNS = 10;
+int const ROWS = 5;
+int const COLUMNS = 5;
 
 class Room {
 private:
 	int id;
 	int seatsNumber;
 	double price;
-	Seat roomSeats[ROWS][COLUMNS];
+	std::string roomSeats[ROWS][COLUMNS];
+
 public:
 	Room();
 	Room(int, int, double);
 	~Room();
 
-	void createRoom(Seat roomSeats[ROWS][COLUMNS]);
+	void createRoom(std::string roomSeats[ROWS][COLUMNS], char state, int seatId);
 
 	void setId(int);
 	void setSeatsNumber(int);

@@ -2,6 +2,7 @@
 #include <iostream>
 #include "cinema.h"
 #include <string>
+#include "Seat.h"
 
 Room::Room() {
 }
@@ -31,20 +32,20 @@ void Room::setSeatsNumber(int) {
 void Room::setPrice(double) {
 	this->price = price;
 }
-void createRoom(Seat roomSeat[ROWS][COLUMNS]) {
+void Room::createRoom(std::string roomSeats[ROWS][COLUMNS], char state, int seatId) {
    
-        char rowLetter = 'A';
-        int seatNumber = 1;
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLUMNS; j++) {
+			roomSeats[i][j] = state;
+			std::cout << "\t|\t" << roomSeats[i][j] << seatId;
+			
+			seatId++;
 
-        for (int i = 0; i < ROWS; ++i) {
-            for (int j = 0; j < COLUMNS; ++j) {
-                Seat roomSeat[i][j] = std::to_string (seatNumber) + rowLetter;
-                seatNumber ++; 
-            }
-            rowLetter = rowLetter + 1;
-            seatNumber = 1;
         }
-    
-       
+		std::cout << "\n" << std::endl;
+		std::cout << "--------------------------------------------------------------------------------------------------------------------" << std::endl;
+    }
 }
+
+
 

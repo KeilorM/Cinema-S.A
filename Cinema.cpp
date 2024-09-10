@@ -24,10 +24,29 @@ void Cinema::saveMovieInformation() {
 		
 	}
 }
+void Cinema::showAvaliableMovie() {
+	cout << "\nPeliculas disponibles:\n" << endl;
+
+	for (int i = 0; i < TOTALMOVIES; i++) {
+		cout << (i + 1) << "- " << cinemaMovies[i].getName() << endl;
+	}
+}
+void Cinema::showMovieInformation(int index) {
+	if (index >= 0 && index < MAX_MOVIES) {
+		cout << "\nInformacion  de la pelicula:" << endl;
+		movieList[index].movieInformation();
+	}
+	else {
+		cout << " Opcion invalida." << endl;
+	}
+	system("pause");
+	system("cls");
+}
+
 void Cinema::showMovieInformation() {
-	std::cout << "----------------------------------------------------- " << std::endl;
+	std::cout << "--------------------------------------------------------------------------------------------------------------------" << std::endl;
 	std::cout << "Estas son las peliculas que tenemos disponibles" << std::endl;
-	std::cout << "-----------------------------------------------------" << std::endl;
+	std::cout << "--------------------------------------------------------------------------------------------------------------------" << std::endl;
 
 	for (int i = 0; i < TOTALMOVIES; i++) {
 		if (cinemaMovies[i].getName() != "") {
@@ -37,7 +56,7 @@ void Cinema::showMovieInformation() {
 			std::cout << "Duracion: " << cinemaMovies[i].getTime() << " minutos" << std::endl;
 			std::cout << "Pais: " << cinemaMovies[i].getCountry() << std::endl;
 			std::cout << "Reviews: " << cinemaMovies[i].getReview() << "/10" << std::endl;
-			std::cout << "-----------------------------" << std::endl;
+			std::cout << "--------------------------------------------------------------------------------------------------------------------" << std::endl;
 
 		}
 		
@@ -80,4 +99,33 @@ void Cinema::addMovie() {
 		cinemaMovies[i].setReview(reviews);
 	}
 }
+void Cinema::displayMovieData() {
+	cout << "\nPeliculas disponibles:\n" << endl;
+
+	for (int i = 0; i < movieCount; i++) {
+		cout << (i + 1) << "- " << movieList[i].getName() << endl;
+	}
+}
+
+void Cinema::showMovieInformation(int index) {
+	if (index >= 0 && index < MAX_MOVIES) {
+		cout << "\nInformacion  de la pelicula:" << endl;
+		movieList[index].movieInformation();
+	}
+	else {
+		cout << " Opcion invalida." << endl;
+	}
+	system("pause");
+	system("cls");
+}
+
+bool Cinema::addMovie(Movie& movie) {
+	if (movieCount >= MAX_MOVIES) {
+		cout << "No se pueden agregar mas peliculas" << endl;
+		return false;
+	}
+	movieList[movieCount++] = movie;
+	return true;
+}
+
 

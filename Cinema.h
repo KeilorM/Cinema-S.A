@@ -25,6 +25,7 @@ public:
 	void saveMovieInformation();
 	void showMovieInformation();
 	void saveRoomInformation();
+	void showAvaliableMovie();
 	void addMovie();
 	void displayRooms();
 

@@ -9,6 +9,10 @@
 
 int main(){
     Cinema MYCINEMA;
+    Room MYROOM;
+    std::string roomSeats[ROWS][COLUMNS];
+    char state = 'F';
+    int seatId = 1;
     MYCINEMA.saveMovieInformation();
     bool menu = true;
     std::string option;
@@ -38,16 +42,13 @@ int main(){
                 std::cout << "" << std::endl;
             }
             if (optionTwo == 2) {
+                optionTwo = 0;
                 menu = false;
             }
         }
         if (option == "b") {
-            int optionTree;
+            
 
-            if (optionTree == 1) {
-
-
-            }
             std::string selection;
             std::cout << "¿Desea agregar una pelicula?" << std::endl;
             std::cout << "Y or N" << std::endl;
@@ -67,9 +68,10 @@ int main(){
             std::cout << "Y or N" << std::endl;
             std::cin >> selectionTwo;
             if (selectionTwo == "Y" || "y") {
-                MYCINEMA.showMovieInformation();
-            }
-            if (selectionTwo == "N" || "n") {
+                
+                
+
+            }else {
                 std::cout << "== menu ==" << std::endl;
                 std::cout << "a) Archivo" << std::endl;
                 std::cout << "b) Mantenimiento" << std::endl;
