@@ -16,9 +16,10 @@ public:
 	Room();
 	Room(int, int, double);
 	~Room();
-
-	void createRoom(std::string roomSeats[ROWS][COLUMNS], char state, int seatId);
-
+	void initializeSeats();
+	void showRooms(char state, int seatId, double price);
+	void createRoom();
+	void printRoom(int room);
 	void setId(int);
 	void setSeatsNumber(int);
 	void setPrice(double);

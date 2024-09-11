@@ -23,7 +23,7 @@ public:
 	~Cinema();
 
 	void saveMovieInformation();
-	void showMovieInformation();
+	void showMovieInformation(int movieNumber);
 	void saveRoomInformation();
 	void showAvaliableMovie();
 	void addMovie();

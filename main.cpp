@@ -7,22 +7,26 @@
 #include "Schedule.h"
 #include "Seat.h"
 
-int main(){
+int main() {
     Cinema MYCINEMA;
     Room MYROOM;
-    std::string roomSeats[ROWS][COLUMNS];
+    int roomSeats[ROWS][COLUMNS];
     char state = 'F';
     int seatId = 1;
     MYCINEMA.saveMovieInformation();
     bool menu = true;
+    double price = 3000;
     std::string option;
     int optionTwo;
-    
-    std::string selectionTwo;
+    int movieNumber;
+    int selectionTwo;
     int numOfMovies;
     while (menu) {
         system("cls");
-        std::cout << "== menu ==" << std::endl;
+        std::cout << "------------------------------------------------------------------------------------------------- " << std::endl;
+        std::cout << "Bienvenido al sistema de compra de tickets de Cinema S.A" << std::endl;
+        std::cout << "Ingrese la opcion que desear para proseguir" << std::endl;
+        std::cout << "------------------------------------------------------------------------------------------------- " << std::endl;
         std::cout << "a) Archivo" << std::endl;
         std::cout << "b) Mantenimiento" << std::endl;
         std::cout << "c) Reserva" << std::endl;
@@ -49,35 +53,32 @@ int main(){
         if (option == "b") {
             
 
-            std::string selection;
-            std::cout << "¿Desea agregar una pelicula?" << std::endl;
-            std::cout << "Y or N" << std::endl;
+            int selection;
+            std::cout << "1) Agregar pelicula" << std::endl;
+            std::cout << "2) Cambiar la configuracion de la sala" << std::endl;
+            std::cout << "3) Salir al menu principal" << std::endl;
             std::cin >> selection;
 
-            if (selection == "Y" || selection == "y") {
+            if (selection == 1) {
                 MYCINEMA.addMovie();
-
             }
-            else {
-                continue;
+            if (selection == 2) { 
+                MYROOM.createRoom();
             }
-            
         }
         if (option == "c") {
-            std::cout << "Desea ver la lista de peliculas disponibles" << std::endl;
-            std::cout << "Y or N" << std::endl;
+            std::cout << "1) Ver peliculas disponibles." << std::endl;
+            std::cout << "2) Salir al menu principal." << std::endl;
             std::cin >> selectionTwo;
-            if (selectionTwo == "Y" || "y") {
-                
-                
-
-            }else {
-                std::cout << "== menu ==" << std::endl;
-                std::cout << "a) Archivo" << std::endl;
-                std::cout << "b) Mantenimiento" << std::endl;
-                std::cout << "c) Reserva" << std::endl;
-                std::cout << "d) Venta" << std::endl;
-                std::cin >> option;
+            if (selectionTwo == 1) {
+                MYCINEMA.showAvaliableMovie();
+                std::cout << "¿Cual pelicula desea ver?" << std::endl;
+                std::cin >> movieNumber;
+                movieNumber = movieNumber - 1;
+                MYCINEMA.showMovieInformation(movieNumber);
+            }
+            if (selectionTwo == 2) {
+                continue;
             }
         }
         if (option == "") {

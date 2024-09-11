@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\munoz\Repositorio-remoto\KeilorM-Proyecto1\Cinema-S.A\main.cpp(13,9): warning C4101: 'roomSeats': variable local sin referencia
+C:\Users\munoz\Repositorio-remoto\KeilorM-Proyecto1\Cinema-S.A\main.cpp(23,9): warning C4101: 'numOfMovies': variable local sin referencia
+  KeilorM-Proyecto1.vcxproj -> C:\Users\munoz\Repositorio-remoto\KeilorM-Proyecto1\Cinema-S.A\x64\Debug\KeilorM-Proyecto1.exe

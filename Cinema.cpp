@@ -9,66 +9,61 @@ Cinema::~Cinema(){
 
 }
 void Cinema::saveMovieInformation() {
-	std::string moviesName[TOTALMOVIES] = { "Spiderman", "Dr. Strange", "Hulk 2" };
-	int yearMovies[TOTALMOVIES] = { 2013, 2020, 2003 };
-	int timeMovies[TOTALMOVIES] = { 190, 80, 120 };
-	std::string countryMovies[TOTALMOVIES] = { "Canada", "USA", "Brazil" };
-	int reviewsMovies[TOTALMOVIES] = { 7, 9, 5 };
+	std::string moviesName[TOTALMOVIES] = { "Spiderman", "Dr. Strange", "Hulk 2", "It"};
+	int yearMovies[TOTALMOVIES] = { 2013, 2020, 2003,1990 };
+	int timeMovies[TOTALMOVIES] = { 190, 80, 120, 160};
+	std::string countryMovies[TOTALMOVIES] = { "Canada", "USA", "Brazil", "Irlanda"};
+	int reviewsMovies[TOTALMOVIES] = { 7, 9, 5, 10};
 
-	for (int i = 0; i < TOTALMOVIES - 2; i++) {
-		cinemaMovies[i].setName(moviesName[i]);
-		cinemaMovies[i].setYear(yearMovies[i]);
-		cinemaMovies[i].setTime(timeMovies[i]);
-		cinemaMovies[i].setCountry(countryMovies[i]);
-		cinemaMovies[i].setReview(reviewsMovies[i]);
+	for (int i = 0; i < TOTALMOVIES; i++) {
+		
+			cinemaMovies[i].setName(moviesName[i]);
+			cinemaMovies[i].setYear(yearMovies[i]);
+			cinemaMovies[i].setTime(timeMovies[i]);
+			cinemaMovies[i].setCountry(countryMovies[i]);
+			cinemaMovies[i].setReview(reviewsMovies[i]);
 		
 	}
 }
 void Cinema::showAvaliableMovie() {
-	cout << "\nPeliculas disponibles:\n" << endl;
-
+	std::cout << "\nEstas son las peliculas que tenemos disponibles:\n" << endl;
+	
 	for (int i = 0; i < TOTALMOVIES; i++) {
-		cout << (i + 1) << "- " << cinemaMovies[i].getName() << endl;
-	}
-}
-void Cinema::showMovieInformation(int index) {
-	if (index >= 0 && index < MAX_MOVIES) {
-		cout << "\nInformacion  de la pelicula:" << endl;
-		movieList[index].movieInformation();
-	}
-	else {
-		cout << " Opcion invalida." << endl;
-	}
-	system("pause");
-	system("cls");
-}
-
-void Cinema::showMovieInformation() {
-	std::cout << "--------------------------------------------------------------------------------------------------------------------" << std::endl;
-	std::cout << "Estas son las peliculas que tenemos disponibles" << std::endl;
-	std::cout << "--------------------------------------------------------------------------------------------------------------------" << std::endl;
-
-	for (int i = 0; i < TOTALMOVIES; i++) {
+		
 		if (cinemaMovies[i].getName() != "") {
+			std::cout << (i + 1) << "- " << cinemaMovies[i].getName() << endl;
+		}
+	}
+}
 
-			std::cout << "Nombre de la pelicula: " << cinemaMovies[i].getName() << std::endl;
-			std::cout << "A"<<char(164)<<"o:" << cinemaMovies[i].getYear() << std::endl;
-			std::cout << "Duracion: " << cinemaMovies[i].getTime() << " minutos" << std::endl;
-			std::cout << "Pais: " << cinemaMovies[i].getCountry() << std::endl;
-			std::cout << "Reviews: " << cinemaMovies[i].getReview() << "/10" << std::endl;
-			std::cout << "--------------------------------------------------------------------------------------------------------------------" << std::endl;
+
+void Cinema::showMovieInformation(int movieNumber) {
+	std::cout << "--------------------------------------------------------------------------------------------------------------------" << std::endl;
+	std::cout << "Esta es la informacion de la pelicula" << std::endl;
+	std::cout << "--------------------------------------------------------------------------------------------------------------------" << std::endl;
+	for (int i = movieNumber; i < movieNumber +1; i++) {
+		if (cinemaMovies[i].getName() != "") {
+			if (i >= 0 && movieNumber < TOTALMOVIES) {
+				std::cout << "Nombre de la pelicula: " << cinemaMovies[i].getName() << std::endl;
+				std::cout << "A" << char(164) << "o:" << cinemaMovies[i].getYear() << std::endl;
+				std::cout << "Duracion: " << cinemaMovies[i].getTime() << " minutos" << std::endl;
+				std::cout << "Pais: " << cinemaMovies[i].getCountry() << std::endl;
+				std::cout << "Reviews: " << cinemaMovies[i].getReview() << "/10" << std::endl;
+				std::cout << "--------------------------------------------------------------------------------------------------------------------" << std::endl;
+
+			}
+			else {
+				cout << " Opcion invalida." << endl;
+			}
+			system("pause");
+			system("cls");
 
 		}
-		
 	}
-
 }
 void Cinema::addMovie() {
-	int numOfMovies;
-	std::cout << "Desea agregar 1 o 2 peliculas?" << std::endl;
-	std::cin >> numOfMovies;
 
-	for (int i = TOTALMOVIES - numOfMovies; i < TOTALMOVIES; i++) {
+	for (int i = 4; i < TOTALMOVIES; i++) {
 		std::string name, country;
 		int year, time, reviews;
 		std::string opcion;
@@ -98,34 +93,6 @@ void Cinema::addMovie() {
 
 		cinemaMovies[i].setReview(reviews);
 	}
-}
-void Cinema::displayMovieData() {
-	cout << "\nPeliculas disponibles:\n" << endl;
-
-	for (int i = 0; i < movieCount; i++) {
-		cout << (i + 1) << "- " << movieList[i].getName() << endl;
-	}
-}
-
-void Cinema::showMovieInformation(int index) {
-	if (index >= 0 && index < MAX_MOVIES) {
-		cout << "\nInformacion  de la pelicula:" << endl;
-		movieList[index].movieInformation();
-	}
-	else {
-		cout << " Opcion invalida." << endl;
-	}
-	system("pause");
-	system("cls");
-}
-
-bool Cinema::addMovie(Movie& movie) {
-	if (movieCount >= MAX_MOVIES) {
-		cout << "No se pueden agregar mas peliculas" << endl;
-		return false;
-	}
-	movieList[movieCount++] = movie;
-	return true;
 }
 
 
