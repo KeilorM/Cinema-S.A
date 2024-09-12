@@ -10,6 +10,7 @@
 int main() {
     Cinema MYCINEMA;
     Room MYROOM;
+    MYCINEMA.saveMovieInformation();
     int roomSeats[ROWS][COLUMNS];
     char state = 'F';
     int seatId = 1;
@@ -67,6 +68,7 @@ int main() {
             }
             if (selection == 2) { 
                 MYROOM.createRoom();
+             
             }
             if (selection == 4) {
                 continue;
@@ -74,7 +76,8 @@ int main() {
         }
         if (option == "c") {
             std::cout << "1) Ver peliculas disponibles." << std::endl;
-            std::cout << "2) Salir al menu principal." << std::endl;
+            std::cout << "2) Ver el horario de las peliculas" << std::endl;
+            std::cout << "3) Salir al menu principal." << std::endl;
             std::cin >> selectionTwo;
             if (selectionTwo == 1) {
                 MYCINEMA.showAvaliableMovie();
@@ -84,6 +87,10 @@ int main() {
                 MYCINEMA.showMovieInformation(movieNumber);
             }
             if (selectionTwo == 2) {
+                MYCINEMA.createdSchedule();
+                MYCINEMA.displaySchedules();
+            }
+            if (selectionTwo == 3) {
                 continue;
             }
         }

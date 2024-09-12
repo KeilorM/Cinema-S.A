@@ -7,22 +7,22 @@
 
 class Schedule {
 private:
-	int date;
-	int startHour;
-	int endHour;
+	std::string date;
+	std::string startHour;
+	std::string endHour;
 	Movie movie;
 	Room room;
 public:
 	Schedule();
-	Schedule(int, int, int);
+	Schedule(std::string, std::string, std::string);
 	~Schedule();
 
-	void setDate(int);
-	void setStartHour(int);
-	void setEndHour(int);
+	void setDate(std::string);
+	void setStartHour(std::string);
+	void setEndHour(std::string);
 
-	int getDate();
-	int getStartHour();
-	int getEndHour();
+	std::string getDate();
+	std::string getStartHour();
+	std::string getEndHour();
 };
 #endif

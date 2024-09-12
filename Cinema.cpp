@@ -10,7 +10,7 @@ Cinema::~Cinema(){
 
 }
 void Cinema::saveMovieInformation() {
-	std::string moviesName[TOTALMOVIES] = { "Spiderman", "Dr. Strange", "Hulk 2", "It"};
+	std::string moviesName[TOTALMOVIES] = { "Run", "Cars", "Hulk 2", "It"};
 	int yearMovies[TOTALMOVIES] = { 2013, 2020, 2003,1990 };
 	int timeMovies[TOTALMOVIES] = { 190, 80, 120, 160};
 	std::string countryMovies[TOTALMOVIES] = { "Canada", "USA", "Brazil", "Irlanda"};
@@ -155,21 +155,25 @@ void Cinema::addMovie() {
 void Cinema::createdSchedule() {
 	std::string movieDates[TOTALMOVIES] = { "20/11/2024", "20/11/2024", "20/11/2024", "20/11/2024" };
 	std::string startMovieHour[TOTALMOVIES] = { "1:00 pm", "1:00 pm", "1:00 pm", "1:00 pm" };
+	std::string endMovieHour[TOTALMOVIES] = { "4:10 pm", "2:10 pm", "3:00 pm", "3:40 pm" };
 
 	for (int i = 0; i < TOTALMOVIES; i++) {
 		cinemaSchedule[i].setDate(movieDates[i]);
 		cinemaSchedule[i].setStartHour(startMovieHour[i]);
+		cinemaSchedule[i].setEndHour(endMovieHour[i]);
 	}
 }
 void Cinema::displaySchedules() {
-	std::cout << "-----------------------------------------------------------------------" << std::endl;
-	std::cout << "| Sala |           Pelicula         |    Fecha   |   Inicio   |  Fin  |" << std::endl;
-	std::cout << "-----------------------------------------------------------------------" << std::endl;
-	for (int i = 0; i < TOTALROOMS; i++) {
-		std::cout << "| " << cinemaMovies[i].getRoomId() << "      |             "<<
-		cinemaMovies[i].getName() <<"       \t|  " <<
-		cinemaMovies[i].get
+	std::cout << "----------------------------------------------------------------------------------" << std::endl;
+	std::cout << "| Sala |           Pelicula     |    Fecha de estreno   |   Inicio   |  Fin  |" << std::endl;
+	std::cout << "----------------------------------------------------------------------------------" << std::endl;
+	for (int i = 0; i < TOTALMOVIES; i++) {
+		std::cout << "| " << cinemaMovies[i].getRoomId() << " |    " << cinemaMovies[i].getName() << "\t\t\t|\t" << cinemaSchedule[i].getDate() << " \t| " << cinemaSchedule[i].getStartHour() << "    | " << cinemaSchedule[i].getEndHour() << std::endl;
+		
 	}
+	std::cout << "----------------------------------------------------------------------------------" << std::endl;
+	std::cout << std::endl;
+
 
 
 }
