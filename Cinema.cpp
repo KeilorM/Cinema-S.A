@@ -14,6 +14,8 @@ void Cinema::saveMovieInformation() {
 	int timeMovies[TOTALMOVIES] = { 190, 80, 120, 160};
 	std::string countryMovies[TOTALMOVIES] = { "Canada", "USA", "Brazil", "Irlanda"};
 	int reviewsMovies[TOTALMOVIES] = { 7, 9, 5, 10};
+	int movieTicketPrice[TOTALMOVIES] = { 4000, 3800, 3500, 5000 };
+	int movieRoomId[TOTALMOVIES] = { 1, 2, 3, 1 };
 
 	for (int i = 0; i < TOTALMOVIES; i++) {
 		
@@ -22,7 +24,8 @@ void Cinema::saveMovieInformation() {
 			cinemaMovies[i].setTime(timeMovies[i]);
 			cinemaMovies[i].setCountry(countryMovies[i]);
 			cinemaMovies[i].setReview(reviewsMovies[i]);
-		
+			cinemaMovies[i].setTicketPrice(movieTicketPrice[i]);
+			cinemaMovies[i].setRoomId(movieRoomId[i]);
 	}
 }
 void Cinema::showAvaliableMovie() {
@@ -49,6 +52,8 @@ void Cinema::showMovieInformation(int movieNumber) {
 				std::cout << "Duracion: " << cinemaMovies[i].getTime() << " minutos" << std::endl;
 				std::cout << "Pais: " << cinemaMovies[i].getCountry() << std::endl;
 				std::cout << "Reviews: " << cinemaMovies[i].getReview() << "/10" << std::endl;
+				std::cout << "Precio del ticket: " << char(189) << cinemaMovies[i].getTicketPrice() << std::endl;
+				std::cout << "La sala asignada para esta pelicula es la numero: " << cinemaMovies[i].getRoomId() << std::endl;
 				std::cout << "--------------------------------------------------------------------------------------------------------------------" << std::endl;
 
 			}
@@ -65,7 +70,7 @@ void Cinema::addMovie() {
 
 	for (int i = 4; i < TOTALMOVIES; i++) {
 		std::string name, country;
-		int year, time, reviews;
+		int year, time, reviews,ticketPrice, roomId;
 		std::string opcion;
 
 		std::cout << "Ingrese el nombre de la pelicula que desea a" << char(164) << "adir." << std::endl;
@@ -92,6 +97,16 @@ void Cinema::addMovie() {
 		std::cin >> reviews;
 
 		cinemaMovies[i].setReview(reviews);
+
+		std::cout << "Ingrese el del tc¿icket en colones" << std::endl;
+		std::cin >> ticketPrice;
+
+		cinemaMovies[i].setTicketPrice(ticketPrice);
+
+		std::cout << "Ingrese la sala en la que va a asignar la pelicula" << std::endl;
+		std::cin >> roomId;
+
+		cinemaMovies[i].setRoomId(roomId);
 	}
 }
 

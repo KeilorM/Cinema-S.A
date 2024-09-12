@@ -7,10 +7,10 @@
 
 Room::Room() {
 }
-Room::Room(int id, int seatsNumber, double price) {
+Room::Room(int id, int seatsNumber) {
 	this->id = id;
 	this->seatsNumber = seatsNumber;
-	this->price = price;
+	
 }
 Room::~Room() {
 }
@@ -21,18 +21,14 @@ int Room::getId() {
 int Room::getSeatsNumber() {
 	return seatsNumber;
 }
-double Room::getPrice() {
-	return price;
-}
+
 void Room::setId(int) {
 	this->id = id;
 }
 void Room::setSeatsNumber(int) {
 	this->seatsNumber = seatsNumber;
 }
-void Room::setPrice(double) {
-	this->price = price;
-}
+
 void Room::initializeSeats() {
 
     
@@ -51,7 +47,7 @@ void Room::initializeSeats() {
     // Método para imprimir una sala específica
 void Room::printRoom(int room) {
     int seatId = 1;
-    std::cout << "Sala " << room + 1 << ": \t\t\t" << "Precio: " << price << " colones" << std::endl;
+    std::cout << "Sala: " << room + 1 << std::endl;
     std::cout << "------------------------------------------------------------------------------------------------" << std::endl;
 
     for (int i = 0; i < ROWS; i++) {
@@ -65,21 +61,21 @@ void Room::printRoom(int room) {
     std::cout << "------------------------------------------------------------------------------------------------" << std::endl;
 }
 void Room::createRoom() {
-    price = 3000;
+    
     std::cout << "------------------------------------------------------------------------------------------------" << std::endl;
 
     for (int room = 0; room < TOTALROOMS; room++) {
-        initializeSeats(); // Inicializa los asientos para la sala actual
-        printRoom(room);   // Imprime la sala actual
+        initializeSeats(); 
+        printRoom(room);  
     }
 }
 
-void Room::showRooms(char state, int seatId, double price) {
-    price = 3000;
+void Room::showRooms(char state, int seatId) {
+    
     std::cout << "------------------------------------------------------------------------------------------------" << std::endl;
 
     for (int room = 0; room < TOTALROOMS; room++) {
-        std::cout << "Sala " << room + 1 << ": \t\t\t" << "Precio: " << price << " colones" << std::endl;
+        std::cout << "Sala " << room + 1 <<std::endl;
         std::cout << "------------------------------------------------------------------------------------------------" << std::endl;
 
         seatId = 1; 

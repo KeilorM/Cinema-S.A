@@ -9,23 +9,20 @@ class Room {
 private:
 	int id;
 	int seatsNumber;
-	double price;
 	std::string roomSeats[ROWS][COLUMNS];
 
 public:
 	Room();
-	Room(int, int, double);
+	Room(int, int);
 	~Room();
 	void initializeSeats();
-	void showRooms(char state, int seatId, double price);
+	void showRooms(char state, int seatId);
 	void createRoom();
 	void printRoom(int room);
 	void setId(int);
 	void setSeatsNumber(int);
-	void setPrice(double);
 
 	int getId();
 	int getSeatsNumber();
-	double getPrice();
 };
 #endif;

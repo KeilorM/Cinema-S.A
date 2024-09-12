@@ -7,12 +7,14 @@ Movie cinemaMovies[TOTALMOVIES];
 Movie::Movie() {
 }
 
-Movie::Movie(std::string name, int year, int time, std::string country, int review) {
+Movie::Movie(std::string name, int year, int time, std::string country, int review, int ticketPrice, int roomId) {
     this->name = name;
     this->year = year;
     this->time = time;
     this->country = country;
     this->review = review;
+    this->ticketPrice = ticketPrice;
+    this->roomId = roomId;
 }
 Movie::~Movie() {
 }
@@ -36,6 +38,12 @@ std::string Movie::getCountry() {
 int Movie::getReview() {
     return review;
 }
+int Movie::getTicketPrice() {
+    return ticketPrice;
+}
+int Movie::getRoomId() {
+    return roomId;
+}
 
 void Movie::setName(std::string name) {
     this->name = name;
@@ -51,4 +59,10 @@ void Movie::setCountry(std::string country) {
 }
 void Movie::setReview(int review) {
     this->review = review;
+}
+void Movie::setTicketPrice(int ticketPrice) {
+    this->ticketPrice = ticketPrice;
+}
+void Movie::setRoomId(int roomId) {
+    this->roomId = roomId;
 }
