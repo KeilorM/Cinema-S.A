@@ -152,5 +152,25 @@ void Cinema::addMovie() {
 		std::cout << "La pelicula fue guardada con exito!!" << std::endl;
 	}
 }
+void Cinema::createdSchedule() {
+	std::string movieDates[TOTALMOVIES] = { "20/11/2024", "20/11/2024", "20/11/2024", "20/11/2024" };
+	std::string startMovieHour[TOTALMOVIES] = { "1:00 pm", "1:00 pm", "1:00 pm", "1:00 pm" };
 
+	for (int i = 0; i < TOTALMOVIES; i++) {
+		cinemaSchedule[i].setDate(movieDates[i]);
+		cinemaSchedule[i].setStartHour(startMovieHour[i]);
+	}
+}
+void Cinema::displaySchedules() {
+	std::cout << "-----------------------------------------------------------------------" << std::endl;
+	std::cout << "| Sala |           Pelicula         |    Fecha   |   Inicio   |  Fin  |" << std::endl;
+	std::cout << "-----------------------------------------------------------------------" << std::endl;
+	for (int i = 0; i < TOTALROOMS; i++) {
+		std::cout << "| " << cinemaMovies[i].getRoomId() << "      |             "<<
+		cinemaMovies[i].getName() <<"       \t|  " <<
+		cinemaMovies[i].get
+	}
+
+
+}
 

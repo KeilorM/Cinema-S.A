@@ -7,21 +7,21 @@
 
 class Schedule {
 private:
-	std::string date;
+	int date;
 	int startHour;
 	int endHour;
 	Movie movie;
 	Room room;
 public:
 	Schedule();
-	Schedule(std::string, int, int);
+	Schedule(int, int, int);
 	~Schedule();
 
-	void setDate(std::string);
+	void setDate(int);
 	void setStartHour(int);
 	void setEndHour(int);
 
-	std::string getDate();
+	int getDate();
 	int getStartHour();
 	int getEndHour();
 };

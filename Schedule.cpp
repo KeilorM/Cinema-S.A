@@ -3,14 +3,14 @@
 
 Schedule::Schedule() {
 }
-Schedule::Schedule(std::string date, int startHour, int endHour) {
+Schedule::Schedule(int date, int startHour, int endHour) {
 	this->date = date;
 	this->startHour = startHour;
 	this->endHour = endHour;
 }
 Schedule::~Schedule() {
 }
-std::string Schedule::getDate() {
+int Schedule::getDate() {
 	return date;
 }
 int Schedule::getStartHour() {
@@ -19,12 +19,12 @@ int Schedule::getStartHour() {
 int Schedule::getEndHour() {
 	return endHour;
 }
-void Schedule::setDate(std::string) {
+void Schedule::setDate(int date) {
 	this->date = date;
 }
-void Schedule::setStartHour(int) {
+int Schedule::setStartHour(int startHour) {
 	this->startHour = startHour;
 }
-void Schedule::setEndHour(int) {
+void Schedule::setEndHour(int endHour) {
 	this->endHour = endHour;
 }

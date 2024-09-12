@@ -24,10 +24,11 @@ public:
 
 	void saveMovieInformation();
 	void showMovieInformation(int movieNumber);
-	void saveRoomInformation();
 	void showAvaliableMovie();
 	void addMovie();
-	void displayRooms();
+	void displaySchedules();
+	void createdSchedule();
+
 
 };
 #endif

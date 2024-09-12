@@ -13,7 +13,6 @@ int main() {
     int roomSeats[ROWS][COLUMNS];
     char state = 'F';
     int seatId = 1;
-    MYCINEMA.saveMovieInformation();
     bool menu = true;
     double price = 3000;
     std::string option;
