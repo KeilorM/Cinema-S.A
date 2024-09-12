@@ -55,15 +55,22 @@ int main() {
 
             int selection;
             std::cout << "1) Agregar pelicula" << std::endl;
-            std::cout << "2) Cambiar la configuracion de la sala" << std::endl;
-            std::cout << "3) Salir al menu principal" << std::endl;
+            std::cout << "2) Ver informacion de la sala" << std::endl;
+            std::cout << "3) Agregar horario" << std::endl;
+            std::cout << "4) Salir al menu principal" << std::endl;
             std::cin >> selection;
 
             if (selection == 1) {
                 MYCINEMA.addMovie();
             }
+            if (selection == 3) {
+
+            }
             if (selection == 2) { 
                 MYROOM.createRoom();
+            }
+            if (selection == 4) {
+                continue;
             }
         }
         if (option == "c") {

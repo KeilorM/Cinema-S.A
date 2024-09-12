@@ -1,6 +1,7 @@
 #include <iostream>
 #include "cinema.h"
 #include "Room.h"
+#include <string>
 
 Cinema::Cinema() {
 
@@ -74,39 +75,81 @@ void Cinema::addMovie() {
 		std::string opcion;
 
 		std::cout << "Ingrese el nombre de la pelicula que desea a" << char(164) << "adir." << std::endl;
-		std::cin >> name;
+		std::cin.ignore();
+		std::getline(std::cin, name);
 		
 		cinemaMovies[i].setName(name);
 		
 		std::cout << "Ingrese el pais de origen de la pelicula." << std::endl;
-		std::cin >> country;
+		std::getline(std::cin, country);
 
 		cinemaMovies[i].setCountry(country);
 
-		std::cout << "Ingrese el año de estreno de la pelicula." << std::endl;
-		std::cin >> year;
+		std::cout << "Ingrese el a" << char(164) << "o de estreno de la pelicula." << std::endl;
+		//1888 fue el año en que se estreno la primera pelicula
+		while (true) {
+			std::cin >> year;
+			if (year >= 1888) {
+				cinemaMovies[i].setYear(year);
+				break;
+			}
+			else {
+				std::cout << "Error, el a"<<char(164)<<"o debe ser mayor o igual a " << 1888 << ".Intente nuevamente." << std::endl;
+			}
+		}
 
 		cinemaMovies[i].setYear(year);
 
 		std::cout << "Ingrese el tiempo de duracion en minutos de la pelicula." << std::endl;
-		std::cin >> time;
+		//siendo 1 minuto el tiempo minimo de duracion de una pelicula y 500 minutos el tiempo maximo 
+		while (true) {
+			std::cin >> time;
+			if (time >= 1 && time <= 500) {
+				cinemaMovies[i].setTime(time);
+				break;
+			}
+			else {
+				std::cout << "Error, la duración debe ser entre " << 1 << " y " << 500 << " minutos. Intente nuevamente." << std::endl;
+			}
+		}
 
 		cinemaMovies[i].setTime(time);
 
 		std::cout << "Ingrese las reviews que recibio la pelicula en un rango de 1 a 10." << std::endl;
-		std::cin >> reviews;
+		
+		while (true) {
+			std::cin >> reviews;
 
-		cinemaMovies[i].setReview(reviews);
+			if (reviews >= 1 && reviews <= 10) {
+				cinemaMovies[i].setReview(reviews);
+				break;
+			}
+			else {
+				std::cout << "Error, la rese" << char(164) << "a debe ser de entre 1 y 10. Intente nuevamente." << std::endl;
+			}
+		}
+		
 
-		std::cout << "Ingrese el del tc¿icket en colones" << std::endl;
+		std::cout << "Ingrese el del ticket en colones" << std::endl;
 		std::cin >> ticketPrice;
 
 		cinemaMovies[i].setTicketPrice(ticketPrice);
 
 		std::cout << "Ingrese la sala en la que va a asignar la pelicula" << std::endl;
-		std::cin >> roomId;
+		while (true) {
+			std::cin >> roomId;
+			if (roomId >= 1 && roomId < 4) { 
+				cinemaMovies[i].setRoomId(roomId);
+				break;
+			}
+			else {
+				std::cout << "Error, la sala debe ser un número positivo entre 1 y 3. Intente nuevamente." << std::endl;
+			}
+		}
+
 
 		cinemaMovies[i].setRoomId(roomId);
+		std::cout << "La pelicula fue guardada con exito!!" << std::endl;
 	}
 }
 
