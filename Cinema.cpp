@@ -240,7 +240,7 @@ void Cinema::displaySchedules() {
 }
 void Cinema::showMovieWithRoom(int movieNumber) {
 	if (movieNumber < 0 || movieNumber >= TOTALMOVIES) {
-		std::cout << "Número de película inválido." << std::endl;
+		std::cout << "Numero de pelicula invalido." << std::endl;
 		return;
 	}
 
@@ -258,6 +258,27 @@ void Cinema::showMovieWithRoom(int movieNumber) {
 	std::cout << "F = free" << std::endl;
 	printRoom(roomId - 1);
 }
+void Cinema::reserveSeat(int roomId, int seatId) {
+	if (roomId < 0 || roomId >= TOTALROOMS) {
+		std::cout << "Nmuero de sala invalido." << std::endl;
+		return;
+	}
 
+	if (seatId < 1 || seatId > ROWS * COLUMNS) {
+		std::cout << "Numero de asiento invalido." << std::endl;
+		return;
+	}
+
+	int row = (seatId - 1) / COLUMNS;
+	int col = (seatId - 1) % COLUMNS;
+
+	if (roomSeats[roomId][row][col] == 'F') {
+		roomSeats[roomId][row][col] = 'R'; 
+		std::cout << "Asiento " << seatId << " reservado con exito en la sala " << roomId + 1 << "." << std::endl;
+	}
+	else {
+		std::cout << "El asiento " << seatId << " ya esta reservado o no esta disponible." << std::endl;
+	}
+}
 
 

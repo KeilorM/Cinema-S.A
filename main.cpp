@@ -83,7 +83,7 @@ int main() {
         }
         if (option == "c") {
             std::cout << "1) Ver peliculas disponibles." << std::endl;
-            std::cout << "2) Ver el horario de las peliculas" << std::endl;
+            std::cout << "2) Reservar asientos" << std::endl;
             std::cout << "3) Salir al menu principal." << std::endl;
             std::cin >> selectionTwo;
             if (selectionTwo == 1) {
@@ -96,6 +96,18 @@ int main() {
             if (selectionTwo == 2) {
                 MYCINEMA.createdSchedule();
                 MYCINEMA.displaySchedules();
+                
+                MYCINEMA.initializeSeats();
+                std::cout << "Ingrese el numero de la pelicula para ver la sala correspondiente (0 a " << TOTALMOVIES - 1 << "): ";
+                std::cin >> movieNumber;
+                MYCINEMA.showMovieWithRoom(movieNumber);
+                int roomId;
+                int seatId;
+                std::cout << "Ingrese el numero de la sala para reservar un asiento (0 a " << TOTALROOMS - 1 << "): ";
+                std::cin >> roomId;
+                std::cout << "Ingrese el numero del asiento a reservar: ";
+                std::cin >> seatId;
+                MYCINEMA.reserveSeat(roomId, seatId);
             }
             if (selectionTwo == 3) {
                 continue;

@@ -33,6 +33,7 @@ public:
 	void showMovieWithRoom(int);
 	void displaySchedules();
 	void createdSchedule();
+	void reserveSeat(int, int);
 
 
 };
