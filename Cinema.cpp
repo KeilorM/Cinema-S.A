@@ -2,6 +2,7 @@
 #include "cinema.h"
 #include "Room.h"
 #include <string>
+#include <random>
 
 Cinema::Cinema() {
 
@@ -9,6 +10,72 @@ Cinema::Cinema() {
 Cinema::~Cinema(){
 
 }
+void Cinema::initializeSeats() {
+
+
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dis(0, 1);
+
+	for (int i = 0; i < ROWS; i++) {
+		for (int j = 0; j < COLUMNS; j++) {
+			int random = dis(gen);
+			roomSeats[i][j] = (random == 0) ? 'F' : 'R';
+		}
+	}
+}
+
+// Método para imprimir una sala específica
+void Cinema::printRoom(int room) {
+	int seatId = 1;
+	std::cout << "Sala: " << room + 1 << std::endl;
+	std::cout << "------------------------------------------------------------------------------------------------" << std::endl;
+
+	for (int i = 0; i < ROWS; i++) {
+		for (int j = 0; j < COLUMNS; j++) {
+			std::cout << "\t|\t" << roomSeats[i][j] << seatId;
+			seatId++;
+		}
+		std::cout << "\n" << std::endl;
+	}
+
+	std::cout << "------------------------------------------------------------------------------------------------" << std::endl;
+}
+void Cinema::createRoom() {
+
+	std::cout << "------------------------------------------------------------------------------------------------" << std::endl;
+
+	for (int room = 0; room < TOTALROOMS; room++) {
+		initializeSeats();
+		printRoom(room);
+	}
+}
+
+void Room::showRooms(char state, int seatId) {
+
+	std::cout << "------------------------------------------------------------------------------------------------" << std::endl;
+
+	for (int room = 0; room < TOTALROOMS; room++) {
+		std::cout << "Sala " << room + 1 << std::endl;
+		std::cout << "------------------------------------------------------------------------------------------------" << std::endl;
+
+		seatId = 1;
+
+		for (int i = 0; i < ROWS; i++) {
+
+			for (int j = 0; j < COLUMNS; j++) {
+				roomSeats[i][j] = state;
+				std::cout << "\t|\t" << roomSeats[i][j] << seatId;
+				seatId++;
+			}
+			std::cout << "\n" << std::endl;
+		}
+
+
+		std::cout << "------------------------------------------------------------------------------------------------" << std::endl;
+	}
+}
+
 void Cinema::saveMovieInformation() {
 	std::string moviesName[TOTALMOVIES] = { "Run", "Cars", "Hulk 2", "It"};
 	int yearMovies[TOTALMOVIES] = { 2013, 2020, 2003,1990 };
@@ -27,6 +94,7 @@ void Cinema::saveMovieInformation() {
 			cinemaMovies[i].setReview(reviewsMovies[i]);
 			cinemaMovies[i].setTicketPrice(movieTicketPrice[i]);
 			cinemaMovies[i].setRoomId(movieRoomId[i]);
+		
 	}
 }
 void Cinema::showAvaliableMovie() {
@@ -46,6 +114,7 @@ void Cinema::showMovieInformation(int movieNumber) {
 	std::cout << "Esta es la informacion de la pelicula" << std::endl;
 	std::cout << "--------------------------------------------------------------------------------------------------------------------" << std::endl;
 	for (int i = movieNumber; i < movieNumber +1; i++) {
+
 		if (cinemaMovies[i].getName() != "") {
 			if (i >= 0 && movieNumber < TOTALMOVIES) {
 				std::cout << "Nombre de la pelicula: " << cinemaMovies[i].getName() << std::endl;
@@ -68,25 +137,21 @@ void Cinema::showMovieInformation(int movieNumber) {
 	}
 }
 void Cinema::addMovie() {
-
 	for (int i = 4; i < TOTALMOVIES; i++) {
 		std::string name, country;
-		int year, time, reviews,ticketPrice, roomId;
-		std::string opcion;
+		int year, time, reviews, ticketPrice, roomId;
+		std::string endHour;
 
 		std::cout << "Ingrese el nombre de la pelicula que desea a" << char(164) << "adir." << std::endl;
 		std::cin.ignore();
 		std::getline(std::cin, name);
-		
 		cinemaMovies[i].setName(name);
-		
+
 		std::cout << "Ingrese el pais de origen de la pelicula." << std::endl;
 		std::getline(std::cin, country);
-
 		cinemaMovies[i].setCountry(country);
 
 		std::cout << "Ingrese el a" << char(164) << "o de estreno de la pelicula." << std::endl;
-		//1888 fue el año en que se estreno la primera pelicula
 		while (true) {
 			std::cin >> year;
 			if (year >= 1888) {
@@ -94,14 +159,11 @@ void Cinema::addMovie() {
 				break;
 			}
 			else {
-				std::cout << "Error, el a"<<char(164)<<"o debe ser mayor o igual a " << 1888 << ".Intente nuevamente." << std::endl;
+				std::cout << "Error, el a" << char(164) << "o debe ser mayor o igual a 1888. Intente nuevamente." << std::endl;
 			}
 		}
 
-		cinemaMovies[i].setYear(year);
-
 		std::cout << "Ingrese el tiempo de duracion en minutos de la pelicula." << std::endl;
-		//siendo 1 minuto el tiempo minimo de duracion de una pelicula y 500 minutos el tiempo maximo 
 		while (true) {
 			std::cin >> time;
 			if (time >= 1 && time <= 500) {
@@ -109,17 +171,13 @@ void Cinema::addMovie() {
 				break;
 			}
 			else {
-				std::cout << "Error, la duración debe ser entre " << 1 << " y " << 500 << " minutos. Intente nuevamente." << std::endl;
+				std::cout << "Error, la duración debe ser entre 1 y 500 minutos. Intente nuevamente." << std::endl;
 			}
 		}
 
-		cinemaMovies[i].setTime(time);
-
 		std::cout << "Ingrese las reviews que recibio la pelicula en un rango de 1 a 10." << std::endl;
-		
 		while (true) {
 			std::cin >> reviews;
-
 			if (reviews >= 1 && reviews <= 10) {
 				cinemaMovies[i].setReview(reviews);
 				break;
@@ -128,34 +186,38 @@ void Cinema::addMovie() {
 				std::cout << "Error, la rese" << char(164) << "a debe ser de entre 1 y 10. Intente nuevamente." << std::endl;
 			}
 		}
-		
 
-		std::cout << "Ingrese el del ticket en colones" << std::endl;
+		std::cout << "Ingrese el precio del ticket en colones." << std::endl;
 		std::cin >> ticketPrice;
-
 		cinemaMovies[i].setTicketPrice(ticketPrice);
 
-		std::cout << "Ingrese la sala en la que va a asignar la pelicula" << std::endl;
+		std::cout << "Para esta pelicula, ingrese la sala en que se proyectará (ej. 1 o 2)." << std::endl;
 		while (true) {
 			std::cin >> roomId;
-			if (roomId >= 1 && roomId < 4) { 
+			if (roomId == 1 || roomId == 2) {
 				cinemaMovies[i].setRoomId(roomId);
 				break;
 			}
 			else {
-				std::cout << "Error, la sala debe ser un número positivo entre 1 y 3. Intente nuevamente." << std::endl;
+				std::cout << "Error, la sala debe ser 1 o 2. Intente nuevamente." << std::endl;
 			}
 		}
 
+		std::cout << "La pelicula inicia a las 2:20 pm, de acuerdo a eso ingrese solo la hora aproximada en la que termina la pelicula (ej. 4:20 pm)." << std::endl;
+		std::cin.ignore();
+		std::getline(std::cin, endHour);
+		cinemaSchedule[i].setEndHour(endHour);
 
-		cinemaMovies[i].setRoomId(roomId);
 		std::cout << "La pelicula fue guardada con exito!!" << std::endl;
 	}
 }
+
+
+
 void Cinema::createdSchedule() {
-	std::string movieDates[TOTALMOVIES] = { "20/11/2024", "20/11/2024", "20/11/2024", "20/11/2024" };
-	std::string startMovieHour[TOTALMOVIES] = { "1:00 pm", "1:00 pm", "1:00 pm", "1:00 pm" };
-	std::string endMovieHour[TOTALMOVIES] = { "4:10 pm", "2:10 pm", "3:00 pm", "3:40 pm" };
+	std::string movieDates[TOTALMOVIES] = { "20/11/2024", "20/11/2024", "20/11/2024", "20/11/2024", "20/11/2024"};
+	std::string startMovieHour[TOTALMOVIES] = { "1:00 pm", "1:00 pm", "1:00 pm", "4:10 pm", "2:20 pm"};
+	std::string endMovieHour[TOTALMOVIES] = { "4:10 pm", "2:10 pm", "3:00 pm", "7:20 pm" };
 
 	for (int i = 0; i < TOTALMOVIES; i++) {
 		cinemaSchedule[i].setDate(movieDates[i]);
@@ -168,13 +230,34 @@ void Cinema::displaySchedules() {
 	std::cout << "| Sala |           Pelicula     |    Fecha de estreno   |   Inicio   |  Fin  |" << std::endl;
 	std::cout << "----------------------------------------------------------------------------------" << std::endl;
 	for (int i = 0; i < TOTALMOVIES; i++) {
-		std::cout << "| " << cinemaMovies[i].getRoomId() << " |    " << cinemaMovies[i].getName() << "\t\t\t|\t" << cinemaSchedule[i].getDate() << " \t| " << cinemaSchedule[i].getStartHour() << "    | " << cinemaSchedule[i].getEndHour() << std::endl;
-		
+		std::cout << "| " << cinemaMovies[i].getRoomId() << " |    " << cinemaMovies[i].getName()
+			<< "\t\t\t|\t" << cinemaSchedule[i].getDate()
+			<< " \t| " << cinemaSchedule[i].getStartHour()
+			<< "    | " << cinemaSchedule[i].getEndHour() << std::endl;
 	}
 	std::cout << "----------------------------------------------------------------------------------" << std::endl;
 	std::cout << std::endl;
-
-
-
 }
+void Cinema::showMovieWithRoom(int movieNumber) {
+	if (movieNumber < 0 || movieNumber >= TOTALMOVIES) {
+		std::cout << "Número de película inválido." << std::endl;
+		return;
+	}
+
+	std::cout << "Nombre de la pelicula: " << cinemaMovies[movieNumber].getName() << std::endl;
+	std::cout << "A"<<char(164)<<"o: " << cinemaMovies[movieNumber].getYear() << std::endl;
+	std::cout << "Duracion: " << cinemaMovies[movieNumber].getTime() << " minutos" << std::endl;				
+	std::cout << "Pais: " << cinemaMovies[movieNumber].getCountry() << std::endl;
+	std::cout << "Rese"<<char(164)<<"as: " << cinemaMovies[movieNumber].getReview() << " / 10" << std::endl;
+	std::cout << "Precio del ticket: " << cinemaMovies[movieNumber].getTicketPrice() << std::endl;
+	std::cout << "Sala asignada: " << cinemaMovies[movieNumber].getRoomId() << std::endl;
+	std::cout << "--------------------------------------------------------------------------------------------------------------------" << std::endl;
+
+	int roomId = cinemaMovies[movieNumber].getRoomId();
+	std::cout << "R = reserved" << std::endl;
+	std::cout << "F = free" << std::endl;
+	printRoom(roomId - 1);
+}
+
+
 

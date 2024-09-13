@@ -56,19 +56,26 @@ int main() {
             int selection;
             std::cout << "1) Agregar pelicula" << std::endl;
             std::cout << "2) Ver informacion de la sala" << std::endl;
-            std::cout << "3) Agregar horario" << std::endl;
+            std::cout << "3) Ver informacion de los horarios" << std::endl;
             std::cout << "4) Salir al menu principal" << std::endl;
             std::cin >> selection;
 
             if (selection == 1) {
                 MYCINEMA.addMovie();
             }
-            if (selection == 3) {
-
-            }
             if (selection == 2) { 
-                MYROOM.createRoom();
+                MYCINEMA.createdSchedule();
+                MYCINEMA.initializeSeats();
+                MYCINEMA.displaySchedules();
+                int movieNumber;
+
+                std::cout << "Ingrese el numero de la pelicula para ver la sala correspondiente (0 a " << TOTALMOVIES - 1 << "): ";
+                std::cin >> movieNumber;
+                MYCINEMA.showMovieWithRoom(movieNumber);
              
+            }
+            if (selection == 3) {
+                
             }
             if (selection == 4) {
                 continue;

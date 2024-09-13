@@ -9,15 +9,16 @@ int const TOTALROOMS = 3;
 #include "schedule.h"
 #include "booking.h"
 #include "sale.h"
+#include <random>
 
 class Cinema {
 private:
 	Movie cinemaMovies[TOTALMOVIES];
 	Room cinemaRooms[TOTALROOMS];
-	Schedule cinemaSchedule[3];
+	Schedule cinemaSchedule[5];
 	Booking cinemaBooking[20];
 	Sale sales[50];
-
+	std::string roomSeats[ROWS][COLUMNS];
 public:
 	Cinema();
 	~Cinema();
@@ -26,6 +27,10 @@ public:
 	void showMovieInformation(int movieNumber);
 	void showAvaliableMovie();
 	void addMovie();
+	void initializeSeats();
+	void printRoom(int room);
+	void createRoom();
+	void showMovieWithRoom(int);
 	void displaySchedules();
 	void createdSchedule();
 

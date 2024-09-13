@@ -15,10 +15,8 @@ public:
 	Room();
 	Room(int, int);
 	~Room();
-	void initializeSeats();
+	
 	void showRooms(char state, int seatId);
-	void createRoom();
-	void printRoom(int room);
 	void setId(int);
 	void setSeatsNumber(int);
 
