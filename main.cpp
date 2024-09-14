@@ -101,13 +101,8 @@ int main() {
                 std::cout << "Ingrese el numero de la pelicula para ver la sala correspondiente (0 a " << TOTALMOVIES - 1 << "): ";
                 std::cin >> movieNumber;
                 MYCINEMA.showMovieWithRoom(movieNumber);
-                int roomId;
-                int seatId;
-                std::cout << "Ingrese el numero de la sala para reservar un asiento (0 a " << TOTALROOMS - 1 << "): ";
-                std::cin >> roomId;
-                std::cout << "Ingrese el numero del asiento a reservar: ";
-                std::cin >> seatId;
-                MYCINEMA.reserveSeat(roomId, seatId);
+                int roomId = MYCINEMA.getMovieRoomId(movieNumber);
+                MYCINEMA.reserveSeats(roomId);
             }
             if (selectionTwo == 3) {
                 continue;

@@ -33,8 +33,8 @@ public:
 	void showMovieWithRoom(int);
 	void displaySchedules();
 	void createdSchedule();
-	void reserveSeat(int, int);
-
+	void reserveSeats(int);
+	int getMovieRoomId(int);
 
 };
 #endif
