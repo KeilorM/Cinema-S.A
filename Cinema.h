@@ -18,7 +18,7 @@ private:
 	Schedule cinemaSchedule[5];
 	Booking cinemaBooking[20];
 	Sale sales[50];
-	std::string roomSeats[ROWS][COLUMNS];
+	char roomSeats[ROWS][COLUMNS];
 public:
 	Cinema();
 	~Cinema();
@@ -35,7 +35,7 @@ public:
 	void createdSchedule();
 	void reserveSeats(int);
 	int getMovieRoomId(int);
-
+	void processPayment(std::string* cedula, int* seatId);
 };
 #endif
 

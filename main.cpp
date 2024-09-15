@@ -11,6 +11,7 @@ int main() {
     Cinema MYCINEMA;
     Room MYROOM;
     MYCINEMA.saveMovieInformation();
+    std::string cedula;
     int roomSeats[ROWS][COLUMNS];
     char state = 'F';
     int seatId = 1;
@@ -96,14 +97,22 @@ int main() {
             if (selectionTwo == 2) {
                 MYCINEMA.createdSchedule();
                 MYCINEMA.displaySchedules();
-                
                 MYCINEMA.initializeSeats();
                 std::cout << "Ingrese el numero de la pelicula para ver la sala correspondiente (0 a " << TOTALMOVIES - 1 << "): ";
                 std::cin >> movieNumber;
                 MYCINEMA.showMovieWithRoom(movieNumber);
                 int roomId = MYCINEMA.getMovieRoomId(movieNumber);
                 MYCINEMA.reserveSeats(roomId);
+                std::cout << "Ingrese su numero de cedula (9 digitos): ";
+                std::cin >> cedula; 
+                std::cout << "Ingrese el numero del asiento reservado: ";
+                std::cin >> seatId; 
+
+                std::cout << "--------------------------------------------------------------------------------------------------------------------" << std::endl;
+                MYCINEMA.showMovieWithRoom(movieNumber);
+                std::cout << "El asiento fue reservado con exito!!!, puedes comprobarlo viendo el estado del asiento nuevamente" << std::endl;
             }
+         
             if (selectionTwo == 3) {
                 continue;
             }
@@ -112,7 +121,28 @@ int main() {
             menu = false;
         }
         system("Pause");
-    }
+    
+        if (option == "d") {
+            if (seatId == 0 || cedula.empty()) {
+                std::cout << "Error: No hay asiento reservado o cedula no proporcionada.\n" << std::endl;
+            }
+            else {            
+                std::cout << "Hay una reserva pendiente de pago\n" << std::endl; 
+                std::cout << "Con la cedula: " << cedula << " y el asiento: " << seatId << "\n" << std::endl;
 
+                MYCINEMA.processPayment(&cedula, &seatId); 
+
+                std::cout << "\nAsiento " << seatId << " marcado como vendido con cedula " << cedula << "." << std::endl;
+            }
+        }
+
+        if (option != "a" && option != "b" && option != "c" && option != "d") {
+            std::cout << "Opcion no valida. Intentelo de nuevo." << std::endl;
+        }
+
+        std::cin.ignore();
+        std::cout << "Presione Enter para continuar...";
+        std::cin.get();
+    }
     return 0;
 }

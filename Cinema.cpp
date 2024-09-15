@@ -173,7 +173,7 @@ void Cinema::addMovie() {
 				break;
 			}
 			else {
-				std::cout << "Error, la duración debe ser entre 1 y 500 minutos. Intente nuevamente." << std::endl;
+				std::cout << "Error, la duracion debe ser entre 1 y 500 minutos. Intente nuevamente." << std::endl;
 			}
 		}
 
@@ -193,7 +193,7 @@ void Cinema::addMovie() {
 		std::cin >> ticketPrice;
 		cinemaMovies[i].setTicketPrice(ticketPrice);
 
-		std::cout << "Para esta pelicula, ingrese la sala en que se proyectará (ej. 1 o 2)." << std::endl;
+		std::cout << "Para esta pelicula, ingrese la sala en que se proyectara" << std::endl;
 		while (true) {
 			std::cin >> roomId;
 			if (roomId == 1 || roomId == 2) {
@@ -272,14 +272,13 @@ int Cinema::getMovieRoomId(int movieNumber) {
 }
 
 void Cinema::reserveSeats(int roomId) {
-
-	if (roomId < 0 || roomId >= TOTALROOMS) {
+	if (roomId < 1 || roomId > TOTALROOMS) {
 		std::cout << "Error: Numero de sala invalido. No se puede proceder con la reserva." << std::endl;
 		return;
 	}
 
 	int seatId;
-	std::cout << "Ingrese el numero del asiento que desea reservar: ";
+	std::cout << "Ingrese el numero del asiento que desea reservar: " << std::endl;
 	std::cin >> seatId;
 
 	if (seatId < 1 || seatId > ROWS * COLUMNS) {
@@ -287,20 +286,53 @@ void Cinema::reserveSeats(int roomId) {
 		return;
 	}
 
-	
+
 	int row = (seatId - 1) / COLUMNS;
 	int col = (seatId - 1) % COLUMNS;
 
-		
-	if (roomSeats[roomId][row][col] == 'F') {
-		roomSeats[roomId][row][col] = 'R'; 
-		std::cout << "Asiento " << seatId << " reservado con éxito en la sala " << roomId + 1 << "." << std::endl;
+	if (roomSeats[row][col] == 'F') {
+		roomSeats[row][col] = 'R';
+		std::cout << "Asiento " << seatId << " reservado con exito en la sala " << roomId << "." << std::endl;
+	}
+	else if (roomSeats[row][col] == 'R') {
+		std::cout << "Error: El asiento " << seatId << " ya esta reservado o no esta disponible." << std::endl;
 	}
 	else {
-			std::cout << "Error: El asiento " << seatId << " ya esta reservado o no esta disponible." << std::endl;
+		std::cout << "Error: Estado del asiento no reconocido." << std::endl;
 	}
-	
-
 }
+void Cinema::processPayment(std::string* cedula, int* seatId) {
+	std::cout << "Por favor, elija un metodo de pago:" << std::endl;
+	std::cout << "1. Tarjeta de credito" << std::endl;
+	std::cout << "2. Efectivo" << std::endl;
+	std::cout << "3. Transferencia bancaria" << std::endl;
+
+	int paymentMethod;
+	std::cin >> paymentMethod;
+
+	if (paymentMethod == 1) {
+		std::cout << "Pago con tarjeta de credito." << std::endl;
+	}
+	if (paymentMethod == 2) {
+		std::cout << "Pago en efectivo. Pague en la taquilla." << std::endl;
+	}
+	if (paymentMethod == 3) {
+		std::cout << "Pago por transferencia bancaria. Realice la transferencia." << std::endl;
+	}
+	if(paymentMethod != 1 && paymentMethod != 2 && paymentMethod != 3){
+		std::cout << "Metodo de pago invalido." << std::endl;
+		return;
+	}
+	int seatNumber = *seatId;
+
+	int row = (*seatId - 1) / COLUMNS;
+	int col = (*seatId - 1) % COLUMNS;
+
+	roomSeats[row][col] = 'S';
+
+	
+}
+
+
 
 
